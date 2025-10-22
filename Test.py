@@ -1,19 +1,7 @@
-from openai import OpenAI
-from OpenAIProductKey import readKeyFromFile
+import lmstudio as lms
 
-key = readKeyFromFile("key.txt")
+with lms.Client() as client:
+    model = client.llm.model("qwen/qwen3-8b")
+    result = model.complete("The quick brown fox ", config={"maxTokens": 10})
+    print(result)
 
-print(key)
-"""
-client = OpenAI(
-  api_key=key
-)
-
-response = client.responses.create(
-  model="gpt-5-nano",
-  input="write a haiku about ai",
-  store=True
-)
-
-print(response.output_text)
-"""
