@@ -1,7 +1,11 @@
 import lmstudio as lms
 
+print("The capitol of the US state containing Tampa is ... Tallahassee, Florida.\nhe capital city of Florida is Tallahassee. So the answer")
+print()
+
 with lms.Client() as client:
     model = client.llm.model("qwen/qwen3-8b")
-    result = model.complete("The quick brown fox ", config={"maxTokens": 10})
-    print(result)
-
+    prompt = "The capitol of the US state containing Tampa is "
+    result = model.complete(prompt, config={"maxTokens": 20})
+    print(f"{prompt}...{result.content}")
+    print()
